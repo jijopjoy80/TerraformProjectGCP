@@ -14,7 +14,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    def imageName = env.PROPS.IMAGE_NAME
+                     def imageName = env.PROPS['IMAGE_NAME']
                     sh "docker build -t ${imageName} ."
                 }
             }
