@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: my-nginx
-        image: gcr.io/blissful-flame-388621/my-nginx:latest
+        image: gcr.io/$(PROJECT_NAME_ENV)/$(IMAGE_NAME_ENV):latest
         ports:
         - containerPort: 80
