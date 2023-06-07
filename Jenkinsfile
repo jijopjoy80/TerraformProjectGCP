@@ -61,8 +61,8 @@ pipeline {
                 rm -rf /home/jenkins/google-cloud-sdk
                 curl https://sdk.cloud.google.com > install.sh
                 bash install.sh --disable-prompts --install-dir=/home/jenkins
-                . /home/jenkins/google-cloud-sdk/completion.bash.inc
-                . /home/jenkins/google-cloud-sdk/path.bash.inc
+                bash -c "source /home/jenkins/google-cloud-sdk/completion.bash.inc"
+                bash -c "source /home/jenkins/google-cloud-sdk/path.bash.inc"
                 gcloud config set project blissful-flame-388621
                 gcloud auth activate-service-account --key-file=/home/jenkins/terraform-gcp/blissful-flame-388621-5a7858ffa9ef.json
                 gcloud container clusters get-credentials cluster-1 --region us-central1
