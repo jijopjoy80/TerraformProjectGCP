@@ -3,6 +3,7 @@ pipeline {
     
         environment {
         IMAGE_NAME_ENV = ""
+        PROJECT_NAME_ENV = ""
     }
     
     stages {
@@ -12,6 +13,7 @@ pipeline {
                     env.PROPS = readProperties file: 'config.properties'
                     println "Loaded properties: ${env.PROPS}"
                     env.IMAGE_NAME_ENV = env.PROPS['IMAGE_NAME']
+                    env.PROJECT_NAME_ENV = env.PROPS['PROJECT_NAME']
                 }
             }
         }
