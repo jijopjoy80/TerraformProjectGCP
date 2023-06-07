@@ -7,13 +7,12 @@ pipeline {
     }
     
     stages {
-        stage('Load Parameters') {
+        stage('Load and Set Parameters') {
             steps {
                 script {
-                    env.PROPS = readProperties file: 'config.properties'
-                    println "Loaded properties: ${env.PROPS}"
-                    env.IMAGE_NAME_ENV = env.PROPS['IMAGE_NAME']
-                    env.PROJECT_NAME_ENV = env.PROPS['PROJECT_NAME']
+                    def propsMap = readProperties file: 'config.properties'
+                    env.IMAGE_NAME_ENV = propsMap['IMAGE_NAME']
+                    env.PROJECT_NAME_ENV = propsMap['PROJECT_NAME']
                 }
             }
         }
