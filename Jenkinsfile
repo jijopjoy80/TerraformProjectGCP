@@ -48,7 +48,7 @@ pipeline {
                 script {
                     sh """
                         terraform init
-                        #terraform apply -auto-approve
+                        terraform apply -auto-approve
                     """
                 }
             }
@@ -62,6 +62,18 @@ pipeline {
                     sh "kubectl apply -f service.yaml"
                     sh "kubectl get service my-nginx-service"
                 }
+            }
+        }
+        
+        stage('Wait') {
+            steps {
+                sh 'sleep 180'
+            }
+        }
+        
+        stage('Terraform Destroy') {
+            steps {
+                    sh 'terraform destroy -auto-approve'
             }
         }
     }
