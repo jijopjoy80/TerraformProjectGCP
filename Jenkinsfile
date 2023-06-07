@@ -21,8 +21,8 @@ pipeline {
                     script {
                         sh """
                             yes | /home/jenkins/terraform-gcp/google-cloud-sdk/bin/gcloud auth configure-docker --quiet
-                            docker tag ${env.PROPS.IMAGE_NAME}:latest gcr.io/blissful-flame-388621/${env.PROPS.IMAGE_NAME}:latest
-                            docker push gcr.io/blissful-flame-388621/${env.PROPS.IMAGE_NAME}:latest
+                            docker tag ${env.PROPS.IMAGE_NAME}:latest gcr.io/${env.PROPS.PROJECT_NAME}/${env.PROPS.IMAGE_NAME}:latest
+                            docker push gcr.io/${env.PROPS.PROJECT_NAME}/${env.PROPS.IMAGE_NAME}:latest
                         """
                 }
             }
