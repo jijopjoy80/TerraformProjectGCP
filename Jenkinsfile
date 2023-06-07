@@ -12,29 +12,35 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                    sh "docker build -t ${env.PROPS['IMAGE_NAME']} ."
+                script {
+                    def imageName = env.PROPS.getProperty('IMAGE_NAME')
+                    sh "docker build -t ${imageName} ."
+                }
             }
         }
 
         stage('Docker Push to GCP') {
             steps {
-                    script {
-                        sh """
-                            yes | /home/jenkins/terraform-gcp/google-cloud-sdk/bin/gcloud auth configure-docker --quiet
-                            docker tag ${env.PROPS['IMAGE_NAME']}:latest gcr.io/${env.PROPS['PROJECT_NAME']}/${env.PROPS['IMAGE_NAME']}:latest
-                            docker push gcr.io/${env.PROPS['PROJECT_NAME']}/${env.PROPS['IMAGE_NAME']}:latest
-                        """
+                script {
+                    def imageName = env.PROPS.getProperty('IMAGE_NAME')
+                    def projectName = env.PROPS.getProperty('PROJECT_NAME')
+
+                    sh """
+                        yes | /home/jenkins/terraform-gcp/google-cloud-sdk/bin/gcloud auth configure-docker --quiet
+                        docker tag ${imageName}:latest gcr.io/${projectName}/${imageName}:latest
+                        docker push gcr.io/${projectName}/${imageName}:latest
+                    """
                 }
             }
         }
 
         stage('GKE Build') {
             steps {
-                    script {
-                        sh """
-                            terraform init
-                            terraform apply -auto-approve
-                        """
+                script {
+                    sh """
+                        terraform init
+                        terraform apply -auto-approve
+                    """
                 }
             }
         }
