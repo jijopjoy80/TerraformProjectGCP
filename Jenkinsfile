@@ -54,17 +54,20 @@ pipeline {
             }
         }
 
-        stage('Install kubectl') {
-            steps {
-                script {
-                    sh """
-                        curl -LO "https://storage.googleapis.com/kubernetes-release/release/\\$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
-                        chmod +x ./kubectl
-                        sudo mv ./kubectl /usr/local/bin/kubectl
-                    """
-                }
-            }
+stage('Install kubectl') {
+    steps {
+        script {
+            writeFile file: 'install_kubectl.sh', text: """
+                #!/bin/bash
+                curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+                chmod +x ./kubectl
+                sudo mv ./kubectl /usr/local/bin/kubectl
+            """
+            sh 'chmod +x install_kubectl.sh'
+            sh './install_kubectl.sh'
         }
+    }
+}
 
         stage('Kubernetes Deployment') {
             steps {
