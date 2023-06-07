@@ -76,9 +76,9 @@ pipeline {
         stage('Kubernetes Deployment') {
             steps {
                 script {
-                    sh "#kubectl apply -f deployment.yaml"
-                    sh "#kubectl apply -f service.yaml"
-                    sh "#kubectl get service my-nginx-service"
+                    sh "kubectl apply -f deployment.yaml"
+                    sh "kubectl apply -f service.yaml"
+                    sh "kubectl get service my-nginx-service"
                 }
             }
         }
