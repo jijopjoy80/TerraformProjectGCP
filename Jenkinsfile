@@ -61,6 +61,9 @@ pipeline {
                 curl https://sdk.cloud.google.com > install.sh
                 bash install.sh --disable-prompts
                 source /root/google-cloud-sdk/path.bash.inc
+                gcloud config set project blissful-flame-388621
+                gcloud auth activate-service-account --key-file=/home/jenkins/terraform-gcp/blissful-flame-388621-5a7858ffa9ef.json
+                gcloud container clusters get-credentials cluster-1 --region us-central1
             """
         }
     }
