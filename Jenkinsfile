@@ -53,5 +53,16 @@ pipeline {
                 }
             }
         }
+        
+        stage('Kubernetes Deployment') {
+            steps {
+                script {
+                    sh "gcloud container clusters get-credentials cluster-1 --region us-central1"
+                    sh "kubectl apply -f deployment.yaml"
+                    sh "kubectl apply -f service.yaml"
+                    sh "kubectl get service my-nginx-service"
+                }
+            }
+        }
     }
 }
