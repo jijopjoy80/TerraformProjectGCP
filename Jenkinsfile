@@ -1,12 +1,17 @@
 pipeline {
     agent any
-
+    
+        environment {
+        IMAGE_NAME_ENV = ""
+    }
+    
     stages {
         stage('Load Parameters') {
             steps {
                 script {
                     env.PROPS = readProperties file: 'config.properties'
                     println "Loaded properties: ${env.PROPS}"
+                    env.IMAGE_NAME_ENV = env.PROPS['IMAGE_NAME']
                 }
             }
         }
