@@ -64,6 +64,9 @@ pipeline {
                         curl -LO https://storage.googleapis.com/kubernetes-release/release/\${KUBE_VERSION}/bin/linux/amd64/kubectl
                         chmod +x kubectl
                         sudo mv kubectl /usr/local/bin/
+                        gcloud auth activate-service-account --key-file=/home/jenkins/terraform-gcp/blissful-flame-388621-5a7858ffa9ef.json
+                        gcloud config set project blissful-flame-388621
+                        gcloud container clusters get-credentials cluster-1 --region us-central1
                     """
                     sh 'kubectl version --client'
                 }
