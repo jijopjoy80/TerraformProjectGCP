@@ -67,6 +67,9 @@ pipeline {
                 gcloud config set project blissful-flame-388621
                 gcloud auth activate-service-account --key-file=/home/jenkins/terraform-gcp/blissful-flame-388621-5a7858ffa9ef.json
                 gcloud container clusters get-credentials my-gke-cluster --region us-central1
+                kubectl apply -f deployment.yaml
+                kubectl apply -f service.yaml
+                kubectl get service my-nginx-service
             """
         }
     }
@@ -75,9 +78,9 @@ pipeline {
         stage('Kubernetes Deployment') {
             steps {
                 script {
-                    sh "kubectl apply -f deployment.yaml"
-                    sh "kubectl apply -f service.yaml"
-                    sh "kubectl get service my-nginx-service"
+                    sh "#kubectl apply -f deployment.yaml"
+                    sh "#kubectl apply -f service.yaml"
+                    sh "#kubectl get service my-nginx-service"
                 }
             }
         }
