@@ -23,8 +23,8 @@ pipeline {
         stage('Docker Push to GCP') {
             steps {
                 script {
-                    def imageName = env.PROPS.IMAGE_NAME
-                    def projectName = env.PROPS.PROJECT_NAME
+                    def imageName = env.PROPS['IMAGE_NAME']
+                    def projectName = env.PROPS['PROJECT_NAME']
 
                     sh """
                         yes | /home/jenkins/terraform-gcp/google-cloud-sdk/bin/gcloud auth configure-docker --quiet
