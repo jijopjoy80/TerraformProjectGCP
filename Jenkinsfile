@@ -49,7 +49,7 @@ pipeline {
                 script {
                     sh """
                         terraform init
-                        terraform apply -auto-approve
+                        #terraform apply -auto-approve
                     """
                 }
             }
