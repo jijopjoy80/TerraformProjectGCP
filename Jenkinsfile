@@ -73,10 +73,10 @@ pipeline {
                 def credentialFile = propsMap['CRED_FILE']
             
                     sh """
-                        #gcloud config set project ${projectName}
-                        #gcloud auth activate-service-account --key-file=/home/jenkins/${credentialFile}
-                        #gcloud container clusters get-credentials my-gke-cluster --region us-central1
-                        #gcloud components install gke-gcloud-auth-plugin
+                        gcloud config set project ${projectName}
+                        gcloud auth activate-service-account --key-file=/home/jenkins/${credentialFile}
+                        gcloud container clusters get-credentials my-gke-cluster --region us-central1
+                        gcloud components install gke-gcloud-auth-plugin
                         kubectl apply -f deployment.yaml
                         kubectl apply -f service.yaml
                         sleep 180
