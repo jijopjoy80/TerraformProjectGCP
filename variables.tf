@@ -1,9 +1,9 @@
 variable "project" {
-  description = "terraform-gcp-389214"
+  description = "The project ID to host resources in"
   type        = string
 }
 
 variable "credentials" {
-  description = "/home/jenkins/terraform-gcp-389214-2d08b4e62faa.json"
+  description = "Path to the GCP credentials JSON file"
   type        = string
 }
