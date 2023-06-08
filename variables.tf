@@ -1,5 +1,5 @@
 variable "project" {
-  description = "blissful-flame-388621"
+  description = "terraform-gcp-389214"
   type        = string
 }
 
