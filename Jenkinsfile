@@ -69,7 +69,6 @@ pipeline {
         steps {
             script {
                 def propsMap = readProperties file: 'config.properties'
-                 def imageName = propsMap['IMAGE_NAME']
                  def projectName = propsMap['PROJECT_NAME']
                  def credentialFile = propsMap['CRED_FILE']
             
