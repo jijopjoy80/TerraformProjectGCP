@@ -1,9 +1,9 @@
 variable "project" {
-  description = "The project ID to host resources in"
+  description = "blissful-flame-388621"
   type        = string
 }
 
 variable "credentials" {
-  description = "The credentials JSON file path"
+  description = "/home/jenkins/terraform-gcp/blissful-flame-388621-5a7858ffa9ef.json"
   type        = string
 }
