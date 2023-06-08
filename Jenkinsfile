@@ -36,7 +36,13 @@ pipeline {
                     def projectName = propsMap['PROJECT_NAME']
 
                     sh """
-                        yes | /home/jenkins/terraform-gcp/google-cloud-sdk/bin/gcloud auth configure-docker --quiet
+                        curl https://sdk.cloud.google.com > install.sh
+                        bash install.sh --disable-prompts --install-dir=/home/jenkins
+                        bash -c "source /home/jenkins/google-cloud-sdk/completion.bash.inc"
+                        bash -c "source /home/jenkins/google-cloud-sdk/path.bash.inc"
+                        gcloud config set project terraform-gcp-389214
+                        gcloud auth activate-service-account --key-file=/home/jenkins/terraform-gcp-389214-2d08b4e62faa.json
+                        yes | /home/jenkins/google-cloud-sdk/bin/gcloud auth configure-docker --quiet
                         docker tag ${imageName}:latest gcr.io/${projectName}/${imageName}:latest
                         docker push gcr.io/${projectName}/${imageName}:latest
                     """
@@ -59,11 +65,11 @@ pipeline {
     steps {
         script {
             sh """
-                rm -rf /home/jenkins/google-cloud-sdk
-                curl https://sdk.cloud.google.com > install.sh
-                bash install.sh --disable-prompts --install-dir=/home/jenkins
-                bash -c "source /home/jenkins/google-cloud-sdk/completion.bash.inc"
-                bash -c "source /home/jenkins/google-cloud-sdk/path.bash.inc"
+                #rm -rf /home/jenkins/google-cloud-sdk
+                #curl https://sdk.cloud.google.com > install.sh
+                #bash install.sh --disable-prompts --install-dir=/home/jenkins
+                #bash -c "source /home/jenkins/google-cloud-sdk/completion.bash.inc"
+                #bash -c "source /home/jenkins/google-cloud-sdk/path.bash.inc"
                 gcloud config set project terraform-gcp-389214
                 gcloud auth activate-service-account --key-file=/home/jenkins/terraform-gcp-389214-2d08b4e62faa.json
                 gcloud container clusters get-credentials my-gke-cluster --region us-central1
