@@ -82,6 +82,7 @@ pipeline {
                         sleep 180
                         kubectl get service my-nginx-service
                         sleep 180
+                        kubectl delete deployments --all
                         kubectl delete service my-nginx-service
                     """
                 }
