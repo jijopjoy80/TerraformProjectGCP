@@ -82,7 +82,7 @@ pipeline {
                         sleep 180
                         kubectl get service my-nginx-service
                         sleep 180
-                        curl http://$(kubectl get service my-nginx-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}') > gcp_output_page.txt
+                        curl http://\$(kubectl get service my-nginx-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}') > gcp_output_page.txt
                         cat gcp_output_page.txt
                         kubectl delete deployments --all
                         kubectl delete service my-nginx-service
