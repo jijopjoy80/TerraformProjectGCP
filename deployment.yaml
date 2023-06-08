@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: my-nginx
-        image: gcr.io/$(PROJECT_NAME_ENV)/$(IMAGE_NAME_ENV):latest
+        image: gcr.io/terraform-gcp-389214/nginx_image_plain:latest
         ports:
         - containerPort: 80
