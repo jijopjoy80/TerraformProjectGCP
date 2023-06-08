@@ -62,30 +62,18 @@ pipeline {
             }
         }
         
-        stage('Initiate Kubernetes Cluster') {
+        stage('Deploy Kubernetes Cluster') {
     steps {
         script {
             sh """
-                #rm -rf /home/jenkins/google-cloud-sdk
-                #curl https://sdk.cloud.google.com > install.sh
-                #bash install.sh --disable-prompts --install-dir=/home/jenkins
-                #bash -c "source /home/jenkins/google-cloud-sdk/completion.bash.inc"
-                #bash -c "source /home/jenkins/google-cloud-sdk/path.bash.inc"
                 gcloud config set project terraform-gcp-389214
                 gcloud auth activate-service-account --key-file=/home/jenkins/terraform-gcp-389214-2d08b4e62faa.json
                 gcloud container clusters get-credentials my-gke-cluster --region us-central1
                 gcloud components install gke-gcloud-auth-plugin
+                kubectl apply -f deployment.yaml
+                kubectl apply -f service.yaml
+                kubectl get service my-nginx-service
             """
-        }
-    }
-}
-
-        stage('Kubernetes Deployment') {
-            steps {
-                script {
-                    sh "kubectl apply -f deployment.yaml"
-                    sh "kubectl apply -f service.yaml"
-                    sh "kubectl get service my-nginx-service"
                 }
             }
         }
