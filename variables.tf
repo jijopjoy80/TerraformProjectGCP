@@ -4,6 +4,6 @@ variable "project" {
 }
 
 variable "credentials" {
-  description = "/home/jenkins/terraform-gcp/blissful-flame-388621-5a7858ffa9ef.json"
+  description = "/home/jenkins/terraform-gcp-389214-2d08b4e62faa.json"
   type        = string
 }
