@@ -1,7 +1,7 @@
 provider "google" {
-  project     = "blissful-flame-388621"
+  project     = var.project
   region      = "us-central1"
-  credentials = file("/home/jenkins/terraform-gcp/blissful-flame-388621-5a7858ffa9ef.json")
+  credentials = file(var.credentials)
 }
 
 resource "google_container_cluster" "primary" {
