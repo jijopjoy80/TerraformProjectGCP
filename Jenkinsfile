@@ -77,7 +77,7 @@ pipeline {
                         gcloud auth activate-service-account --key-file=/home/jenkins/${credentialFile}
                         gcloud container clusters get-credentials my-gke-cluster --region us-central1
                         gcloud components install gke-gcloud-auth-plugin
-                        kubectl apply -f deployment.yaml
+                        kubectl apply -f deployment.yaml --set CONTAINER_IMAGE_NAME=gcr.io/${projectName}/${imageName}:latest
                         kubectl apply -f service.yaml
                         sleep 180
                         kubectl get service my-nginx-service
