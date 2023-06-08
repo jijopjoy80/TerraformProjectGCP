@@ -36,6 +36,7 @@ pipeline {
                     def projectName = propsMap['PROJECT_NAME']
 
                     sh """
+                        rm -rf /home/jenkins/google-cloud-sdk
                         curl https://sdk.cloud.google.com > install.sh
                         bash install.sh --disable-prompts --install-dir=/home/jenkins
                         bash -c "source /home/jenkins/google-cloud-sdk/completion.bash.inc"
