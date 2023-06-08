@@ -62,7 +62,7 @@ pipeline {
             }
         }
         
-        stage('Install Google Cloud SDK') {
+        stage('Initiate Kubernetes Cluster') {
     steps {
         script {
             sh """
