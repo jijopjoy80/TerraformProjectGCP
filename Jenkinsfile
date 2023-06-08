@@ -69,8 +69,8 @@ pipeline {
         steps {
             script {
                 def propsMap = readProperties file: 'config.properties'
-                def projectName = propsMap['PROJECT_NAME']
-                def credentialFile = propsMap['CRED_FILE']
+                 def projectName = propsMap['PROJECT_NAME']
+                 def credentialFile = propsMap['CRED_FILE']
             
                     sh """
                         gcloud config set project ${projectName}
