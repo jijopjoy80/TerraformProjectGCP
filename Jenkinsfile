@@ -79,15 +79,12 @@ pipeline {
                         gcloud components install gke-gcloud-auth-plugin
                         kubectl apply -f deployment.yaml
                         kubectl apply -f service.yaml
+                        sleep 180
                         kubectl get service my-nginx-service
+                        sleep 180
+                        kubectl delete service my-nginx-service
                     """
                 }
-            }
-        }
-
-        stage('Wait') {
-            steps {
-                sh 'sleep 180'
             }
         }
 
