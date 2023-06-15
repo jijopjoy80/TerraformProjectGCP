@@ -75,7 +75,7 @@ pipeline {
                     sh """
                         gcloud config set project ${projectName}
                         gcloud auth activate-service-account --key-file=/var/lib/jenkins/${credentialFile}
-                        gcloud container clusters get-credentials my-gke-cluster --region us-central1
+                        gcloud container clusters get-credentials my-gke-cluster --num-nodes=2 --region us-central1
                         gcloud components install gke-gcloud-auth-plugin
                         kubectl apply -f deployment.yaml
                         kubectl apply -f service.yaml
