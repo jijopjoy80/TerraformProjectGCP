@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: my-nginx
-        image: gcr.io/terraform-gcp-389214/nginx_image_plain:latest
+        image: gcr.io/corded-cortex-385416/gcpjijo_15_06_2023:latest
         ports:
         - containerPort: 80
