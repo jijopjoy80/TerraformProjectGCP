@@ -5,7 +5,7 @@ pipeline {
         IMAGE_NAME_ENV = ""
         PROJECT_NAME_ENV = ""
         CRED_FILE = ""
-        PATH = "/home/jenkins/google-cloud-sdk/bin:$PATH"
+        PATH = "/var/lib/jenkins/google-cloud-sdk/bin:$PATH"
     }
     
     stages {
