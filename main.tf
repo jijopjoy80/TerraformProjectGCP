@@ -1,12 +1,12 @@
 provider "google" {
   project     = var.project
-  region      = "us-central1"
+  region      = "asia-south1"
   credentials = file(var.credentials)
 }
 
 resource "google_container_cluster" "primary" {
   name     = "my-gke-cluster"
-  location = "us-central1"
+  location = "asia-south1"
 
   remove_default_node_pool = true
   initial_node_count       = 1
@@ -20,7 +20,7 @@ resource "google_container_cluster" "primary" {
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
   name       = "my-node-pool"
-  location   = "us-central1"
+  location   = "asia-south1"
   cluster    = google_container_cluster.primary.name
   node_count = 1
 
